@@ -1,4 +1,4 @@
-# Tung-Au-Temperature-Visualizer
+# Tung Au Temperature Visualizer
 
 ## Introduction
 This is a tool I created to visualize temperature changes in Tung Au Laboratory in Porter Hall at Carnegie Mellon University. I created it for the purposes of 12-301: Civil & Environmental Engineering Projects.
