@@ -21,8 +21,8 @@ The easiest way to install all of these dependencies at once is to install [Anac
 ### Getting Data
 This tool is meant to be used with the unified data from the class, which is recorded in [a Google Sheet](https://docs.google.com/a/andrew.cmu.edu/spreadsheets/d/1hrspVE9td1pjHLXmYTPeIDspb6e5GqtgCfN1QduVqck/edit?usp=sharing). In order to use this data, you must first download the sheet as a csv.
 Once you have saved the csv file, run the program
-+ On Mac or Linux, open a shell in the directory containing main.py and type `python main.py`
-+ On Windows, open a command prompt window in the folder containing main.py and type `python main.py`
++ On Mac or Linux, open a shell in the directory containing main.py and type `python main.py`.
++ On Windows, open a command prompt window in the folder containing main.py and type `python main.py`.
 
 You will be prompted to provide the path of the csv file. Provide this path. If you saved the csv file in the same directory as main.py, this is simply the name of the csv file.
 A window will pop up with a map of Tung Au Lab with data point, which will change color depending on the temperature at the time indicated by the title of the visualization. The scale ranges from yellow to red, with yellow indicating a temperature of 20°C and red indicating a temperature of 27°C.
