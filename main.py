@@ -21,7 +21,7 @@ def parse_location(location):
     if parsed == None:
         parsed = LOC_FORMAT_INT.match(location)
         if parsed == None:
-            return ""
+            return float("NaN")
         else:
             return location[parsed.start():parsed.end()] + ".0"
     else:
@@ -58,22 +58,22 @@ def td_to_sec(td):
 def get_data(fname=None):
     if fname == None or type(fname) != str:
         fname = raw_input("data file path: ")
-    try:
-        with open("tung_au_temp_data.csv", "rt") as csvfile:
-            data = pd.read_csv(csvfile).fillna("")
-        data.columns = ["group", "time", "temperature", "humidity", "location", "notes"]
-        data["time"] = pd.to_datetime(data["time"])
-        data["location"] = data["location"].apply(parse_location)
-        data["humidity"] = data["humidity"].apply(parse_humidity)
-        data["x"] = data["location"].apply(x_coordinate)
-        data["y"] = data["location"].apply(y_coordinate) - 1
-        data["t"] = ((data["time"] - pd.datetime(2016,11,12)).apply(td_to_sec)/60).astype(int)
-        data["t_tod"] = (data["t"]%(60*60)/60).astype(int)
-        data = data.dropna()
-        return data
-    except:
-        print "Error: invalid or nonexistent data file"
-        get_data()
+    # try:
+    with open(fname, "rt") as csvfile:
+        data = pd.read_csv(csvfile).fillna("")
+    data.columns = ["group", "time", "temperature", "humidity", "location", "notes"]
+    data["time"] = pd.to_datetime(data["time"])
+    data["location"] = data["location"].apply(parse_location)
+    data["humidity"] = data["humidity"].apply(parse_humidity)
+    data = data.dropna()
+    data["x"] = data["location"].apply(x_coordinate)
+    data["y"] = data["location"].apply(y_coordinate) - 1
+    data["t"] = ((data["time"] - pd.datetime(2016,11,12)).apply(td_to_sec)/60).astype(int)
+    data["t_tod"] = (data["t"]%(60*60)/60).astype(int)
+    return data
+    # except:
+    #     print "Error: invalid or nonexistent data file"
+    #     get_data()
       
 def fill_missing_grids(grids, xdim, ydim):
     for y in xrange(ydim):
